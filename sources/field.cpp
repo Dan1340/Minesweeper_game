@@ -55,6 +55,9 @@ void Field::flag_cell(int i_x, int i_y)
 //	Let's see Paul Allen's cell...
 void Field::open_cell(int i_x, int i_y)
 {
+	if (cells.at(i_x * COLUMNS + i_y).get_is_open())
+		return;											//	It's already done, turn back
+	
 	if (cells.at(i_x * COLUMNS + i_y).get_is_flag())
 		return;											//	The flag is here, cancel operation
 
@@ -68,7 +71,7 @@ void Field::open_cell(int i_x, int i_y)
 		for (int a = -1; a < 2; a++) {
 			for (int b = -1; b < 2; b++) {
 				if (!(a == 0 && b == 0) && !(a + i_x < 0 || b + i_y < 0 || a + i_x == COLUMNS || b + i_y == ROWS))
-						cells.at((i_x + a) * COLUMNS + (i_y + b)).set_is_open();		//	Let's party! (comming soon)
+						this->open_cell(i_x + a, i_y + b);				//	Let's party!
 			}
 		}
 }

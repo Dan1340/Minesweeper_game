@@ -47,10 +47,12 @@ int main()
             }
 
             if (event.type == sf::Event::MouseButtonPressed) {
-                if (event.key.code == sf::Mouse::Right)
-                    field.flag_cell(x, y);                  //  Are you sure?
-                else if (event.key.code == sf::Mouse::Left)
-                    field.open_cell(x, y);                  //  You are.
+                if (x >= 0 && x < ROWS && y >= 0 && y < COLUMNS) {  //  Don't touch the frame! -_-
+                    if (event.key.code == sf::Mouse::Right)
+                        field.flag_cell(x, y);                  //  Are you sure?
+                    else if (event.key.code == sf::Mouse::Left)
+                        field.open_cell(x, y);                  //  You are.
+                }
             }
         }
     }
