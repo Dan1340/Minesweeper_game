@@ -3,6 +3,11 @@
 //	The size of the field
 constexpr unsigned int CELL_SIZE = 64;
 constexpr unsigned int FRAME_THICK = 32;
+constexpr unsigned int FRAME_HEAD = 128;
+
+//	Guy button coordinates
+constexpr unsigned int GUY_X = 384;
+constexpr unsigned int GUY_Y = 48;
 
 //	Number of columns
 constexpr unsigned char COLUMNS = 12;
