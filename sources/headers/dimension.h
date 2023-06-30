@@ -9,6 +9,10 @@ constexpr unsigned int FRAME_HEAD = 128;
 constexpr unsigned int GUY_X = 384;
 constexpr unsigned int GUY_Y = 48;
 
+//	Timer coordinates
+constexpr unsigned int TIMER_X = 639;
+constexpr unsigned int TIMER_Y = 48;
+
 //	Number of columns
 constexpr unsigned char COLUMNS = 12;
 

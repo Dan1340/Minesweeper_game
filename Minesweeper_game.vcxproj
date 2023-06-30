@@ -133,11 +133,13 @@
     <ClCompile Include="sources\cell.cpp" />
     <ClCompile Include="sources\field.cpp" />
     <ClCompile Include="sources\main.cpp" />
+    <ClCompile Include="sources\menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\headers\cell.h" />
     <ClInclude Include="sources\headers\dimension.h" />
     <ClInclude Include="sources\headers\field.h" />
+    <ClInclude Include="sources\headers\menu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,13 +13,14 @@ Field::Field()
 {
 	for (int i = 0; i < COLUMNS * ROWS; i++)
 		cells.push_back(Cell());
-
+	
 	this->generate();
 }
 
 //	Create or reset the playing field
 void Field::generate()
 {
+	game_over = false;
 	for (int i = 0; i < cells.size(); i++)
 		cells.at(i).restart();				//	Transfer cells to initial state
 
@@ -61,11 +62,13 @@ void Field::open_cell(int i_x, int i_y)
 	if (cells.at(i_x * COLUMNS + i_y).get_is_flag())
 		return;											//	The flag is here, cancel operation
 
-	cells.at(i_x * COLUMNS + i_y).set_is_open();		// Sooooo...
+	cells.at(i_x * COLUMNS + i_y).set_is_open();		//	Sooooo...
 
-	if (cells.at(i_x * COLUMNS + i_y).get_is_mine())
+	if (cells.at(i_x * COLUMNS + i_y).get_is_mine()) {	//	Oops
+		game_over = true;
 		for (int i = 0; i < cells.size(); i++)
 				cells.at(i).set_is_open();				//	BOOM! (comming soon)
+	}
 
 	else if (cells.at(i_x * COLUMNS + i_y).get_mines_around() == 0)		//	Success, let's clean the field
 		for (int a = -1; a < 2; a++) {
@@ -87,4 +90,9 @@ int Field::get_view(int i_x, int i_y)
 		return VIEW_MINE;
 	else
 		return cells.at(i_x * COLUMNS + i_y).get_mines_around();	//	By number of neighbors
+}
+
+bool Field::get_game_over()
+{
+	return game_over;
 }
