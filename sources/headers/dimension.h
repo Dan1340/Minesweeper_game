@@ -13,6 +13,10 @@ constexpr unsigned int GUY_Y = 48;
 constexpr unsigned int TIMER_X = 639;
 constexpr unsigned int TIMER_Y = 48;
 
+//	Counter coordinates
+constexpr unsigned int COUNTER_X = 65;
+constexpr unsigned int COUNTER_Y = 48;
+
 //	Number of columns
 constexpr unsigned char COLUMNS = 12;
 

@@ -6,6 +6,7 @@ class Field
 {
 	std::vector < Cell > cells;
 	bool game_over;
+	int flags;
 
 public:
 	Field();
@@ -14,4 +15,5 @@ public:
 	void open_cell(int i_x, int i_y);
 	int get_view(int i_x, int i_y);
 	bool get_game_over();
+	int get_flags();
 };

@@ -21,6 +21,7 @@ Field::Field()
 void Field::generate()
 {
 	game_over = false;
+	flags = 0;
 	for (int i = 0; i < cells.size(); i++)
 		cells.at(i).restart();				//	Transfer cells to initial state
 
@@ -51,6 +52,10 @@ void Field::flag_cell(int i_x, int i_y)
 {
 	if (!cells.at(i_x * COLUMNS + i_y).get_is_open())
 		cells.at(i_x * COLUMNS + i_y).set_is_flag();
+	if (cells.at(i_x * COLUMNS + i_y).get_is_flag())
+		flags++;
+	else
+		flags--;
 }
 
 //	Let's see Paul Allen's cell...
@@ -95,4 +100,9 @@ int Field::get_view(int i_x, int i_y)
 bool Field::get_game_over()
 {
 	return game_over;
+}
+
+int Field::get_flags()
+{
+	return flags;
 }

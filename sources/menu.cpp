@@ -17,18 +17,20 @@ void Menu::add_guy_state()
 	guy_state++;
 }
 
-void Menu::set_flag_counter(int flags)
+//  It's about time, it's about counter
+void Menu::check_menu(bool game_over, int flags)
 {
-	flag_counter = flags;
-}
-
-//  It's about time
-void Menu::check_timer(bool game_over)
-{
-	if (game_over)
+	if (game_over) {
 		finish_time = finish_time;
-	else
+		counter = counter;
+	}
+	else {
 		finish_time = time(0);
+		if (flags > MINES)
+			counter = 0;
+		else
+			counter = MINES - flags;
+	}
 }
 
 int Menu::get_guy_state()
@@ -37,7 +39,7 @@ int Menu::get_guy_state()
 }
 
 //	Specifies a digit for the timer segment
-int Menu::get_digit(int index)
+int Menu::get_timer(int index)
 {
 	int timer = finish_time - start_time;
 	int mod = pow(10, index+1);
@@ -45,9 +47,12 @@ int Menu::get_digit(int index)
 	return (timer % mod) / div;
 }
 
-int Menu::get_flag_counter()
+//	Specifies a digit for the counter segment
+int Menu::get_counter(int index)
 {
-	return flag_counter;
+	int mod = pow(10, index + 1);
+	int div = pow(10, index);
+	return (counter % mod) / div;
 }
 
 //	Initial state of the menu
@@ -56,5 +61,5 @@ void Menu::restart()
 	guy_state = 0;
 	start_time = time(0);
 	finish_time = time(0);
-	flag_counter = 0;
+	counter = MINES;
 }

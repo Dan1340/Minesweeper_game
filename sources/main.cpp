@@ -42,8 +42,13 @@ int main()
         s_guy.setPosition(GUY_X, GUY_Y);
         window.draw(s_guy);
         for (int i = 0; i < 4; i++) {
-            s_digits.setTextureRect(sf::IntRect(menu.get_digit(i) * (CELL_SIZE/2), 0, CELL_SIZE/2, CELL_SIZE));
+            s_digits.setTextureRect(sf::IntRect(menu.get_timer(i) * (CELL_SIZE/2), 0, CELL_SIZE/2, CELL_SIZE));
             s_digits.setPosition(TIMER_X + (3 - i) * (CELL_SIZE/2), TIMER_Y);
+            window.draw(s_digits);
+        }
+        for (int i = 0; i < 4; i++) {
+            s_digits.setTextureRect(sf::IntRect(menu.get_counter(i) * (CELL_SIZE / 2), 0, CELL_SIZE / 2, CELL_SIZE));
+            s_digits.setPosition(COUNTER_X + (3 - i) * (CELL_SIZE / 2), COUNTER_Y);
             window.draw(s_digits);
         }
 
@@ -86,7 +91,7 @@ int main()
             }
         }
 
-        menu.check_timer(field.get_game_over());
+        menu.check_menu(field.get_game_over(), field.get_flags());
     }
     return 0;
 }
