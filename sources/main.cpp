@@ -29,23 +29,27 @@ int main()
         sf::Event event;
         window.clear(sf::Color::White);
 
+        //  Frame
         s_frame.setPosition(0, 0);
         window.draw(s_frame);
-
+        //  Cells
         for (int i = 0; i < COLUMNS; i++)       //  Cut and paste
             for (int j = 0; j < ROWS; j++) {
                 s_cell.setTextureRect(sf::IntRect(field.get_view(i, j) * CELL_SIZE, 0, CELL_SIZE, CELL_SIZE));
                 s_cell.setPosition(i * CELL_SIZE + FRAME_THICK, j * CELL_SIZE + FRAME_THICK + FRAME_HEAD);
                 window.draw(s_cell);
             }
+        //  Button
         s_guy.setTextureRect(sf::IntRect(menu.get_guy_state() * CELL_SIZE, 0, CELL_SIZE, CELL_SIZE));
         s_guy.setPosition(GUY_X, GUY_Y);
         window.draw(s_guy);
+        //  Timer
         for (int i = 0; i < 4; i++) {
             s_digits.setTextureRect(sf::IntRect(menu.get_timer(i) * (CELL_SIZE/2), 0, CELL_SIZE/2, CELL_SIZE));
             s_digits.setPosition(TIMER_X + (3 - i) * (CELL_SIZE/2), TIMER_Y);
             window.draw(s_digits);
         }
+        //  Counter
         for (int i = 0; i < 4; i++) {
             s_digits.setTextureRect(sf::IntRect(menu.get_counter(i) * (CELL_SIZE / 2), 0, CELL_SIZE / 2, CELL_SIZE));
             s_digits.setPosition(COUNTER_X + (3 - i) * (CELL_SIZE / 2), COUNTER_Y);
@@ -79,7 +83,7 @@ int main()
                         field.open_cell(field_x, field_y);                  //  You are.
                 }
                 else if (pos.x >= GUY_X && pos.x < GUY_X + CELL_SIZE && pos.y >= GUY_Y && pos.y < GUY_Y + CELL_SIZE) {
-                    menu.add_guy_state();                   //  What's with the face?
+                    menu.set_button_state(true);                   //  What's with the face?
                 }
             }
 
@@ -91,7 +95,8 @@ int main()
             }
         }
 
-        menu.check_menu(field.get_game_over(), field.get_flags());
+        //  Menu activity
+        menu.check_menu(field.get_game_over(), field.get_flags(), field.get_victory());
     }
     return 0;
 }

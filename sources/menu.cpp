@@ -5,31 +5,39 @@
 #include "headers/dimension.h"
 
 /*	Contains menu parameters,
-	such as button, timer and flag counter	*/
+	such as guy-button, timer and flag counter	*/
 
 Menu::Menu()
 {
 	this->restart();
 }
 
-void Menu::add_guy_state()
+void Menu::set_button_state(bool state)
 {
-	guy_state++;
+	button_state = state;
 }
 
 //  It's about time, it's about counter
-void Menu::check_menu(bool game_over, int flags)
+void Menu::check_menu(bool game_over, int flags, bool victory)
 {
-	if (game_over) {
+	if (game_over) {						//	Stop activity
 		finish_time = finish_time;
 		counter = counter;
-	}
-	else {
-		finish_time = time(0);
-		if (flags > MINES)
-			counter = 0;
+		if (victory)
+			guy_state = WINNER_GUY + button_state;
 		else
+			guy_state = LOSER_GUY + button_state;
+	}
+	else {									//	Continue activity
+		finish_time = time(0);
+		if (flags > MINES) {				//	How many?
+			counter = 0;
+			guy_state = QUIZZICAL_GUY + button_state;
+		}
+		else {
 			counter = MINES - flags;
+			guy_state = THINKING_GUY + button_state;
+		}
 	}
 }
 
@@ -62,4 +70,5 @@ void Menu::restart()
 	start_time = time(0);
 	finish_time = time(0);
 	counter = MINES;
+	button_state = false;
 }
