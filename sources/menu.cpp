@@ -12,13 +12,55 @@ Menu::Menu()
 	this->restart();
 }
 
+//	Initial state of the menu
+void Menu::restart()
+{
+	guy_state = THINKING_GUY;
+	start_time = time(0);
+	finish_time = time(0);
+	blink_time = time(0);
+	counter = MINES;
+	button_state = false;
+}
+
+char Menu::get_guy_state()
+{
+	return guy_state;
+}
+
+//	Specifies a digit for the timer segment
+char Menu::get_timer(int index)
+{
+	if (blink_time % 2 == 1)
+		return EMPTY_SEGMENT;	//	Blinking
+
+	int timer = finish_time - start_time;
+	if (index >= 2)
+		timer /= 60;		//	minutes
+	timer %= 60;
+	int mod = pow(10, (index % 2) + 1);
+	int div = pow(10, (index % 2));
+	return (timer % mod) / div;
+}
+
+//	Specifies a digit for the counter segment
+char Menu::get_counter(int index)
+{
+	if (blink_time % 2 == 1)
+		return EMPTY_SEGMENT;	//	Blinking
+
+	int mod = pow(10, index + 1);
+	int div = pow(10, index);
+	return (counter % mod) / div;
+}
+
 void Menu::set_button_state(bool state)
 {
 	button_state = state;
 }
 
 //  It's about time, it's about counter
-void Menu::check_menu(bool game_over, int flags, bool victory)
+void Menu::check_menu(bool game_over, bool victory, char flags)
 {
 	if (game_over) {						//	Stop activity
 		finish_time = finish_time;
@@ -40,46 +82,4 @@ void Menu::check_menu(bool game_over, int flags, bool victory)
 		}
 	}
 	blink_time = time(0) - finish_time;
-}
-
-int Menu::get_guy_state()
-{
-	return guy_state;
-}
-
-//	Specifies a digit for the timer segment
-int Menu::get_timer(int index)
-{
-	if (blink_time % 2 == 1)
-		return EMPTY_SEGMENT;	//	Blinking
-
-	int timer = finish_time - start_time;
-	if (index >= 2)
-		timer /= 60;		//	minutes
-	timer %= 60;
-	int mod = pow(10, (index % 2) + 1);
-	int div = pow(10, (index % 2));
-	return (timer % mod) / div;
-}
-
-//	Specifies a digit for the counter segment
-int Menu::get_counter(int index)
-{
-	if (blink_time % 2 == 1)
-		return EMPTY_SEGMENT;	//	Blinking
-
-	int mod = pow(10, index + 1);
-	int div = pow(10, index);
-	return (counter % mod) / div;
-}
-
-//	Initial state of the menu
-void Menu::restart()
-{
-	guy_state = 0;
-	start_time = time(0);
-	finish_time = time(0);
-	blink_time = time(0);
-	counter = MINES;
-	button_state = false;
 }

@@ -2,19 +2,19 @@
 
 class Menu
 {
-	int guy_state;
+	char guy_state;
 	int start_time;
 	int finish_time;
 	int blink_time;
-	int counter;
+	char counter;
 	bool button_state;
 
 public:
 	Menu();
-	void set_button_state(bool state);
-	void check_menu(bool game_state, int flags, bool victory);
-	int get_guy_state();
-	int get_timer(int index);
-	int get_counter(int index);
 	void restart();
+	char get_guy_state();
+	char get_timer(int index);
+	char get_counter(int index);
+	void set_button_state(bool state);
+	void check_menu(bool game_state, bool victory, char flags);
 };

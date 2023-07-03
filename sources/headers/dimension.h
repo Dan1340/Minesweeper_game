@@ -8,15 +8,15 @@ constexpr unsigned int FRAME_HEAD = 128;
 //	Guy button coordinates
 constexpr unsigned int GUY_X = 384;
 constexpr unsigned int GUY_Y = 48;
-constexpr unsigned int THINKING_GUY = 0;
-constexpr unsigned int QUIZZICAL_GUY = 2;
-constexpr unsigned int LOSER_GUY = 4;
-constexpr unsigned int WINNER_GUY = 6;
+constexpr unsigned char THINKING_GUY = 0;
+constexpr unsigned char QUIZZICAL_GUY = 2;
+constexpr unsigned char LOSER_GUY = 4;
+constexpr unsigned char WINNER_GUY = 6;
 
 //	The size of digits
 constexpr unsigned int DIGIT_HEIGHT = 64;
 constexpr unsigned int DIGIT_WIDTH = 32;
-constexpr unsigned int EMPTY_SEGMENT = 10;
+constexpr unsigned char EMPTY_SEGMENT = 10;
 
 //	Timer coordinates
 constexpr unsigned int TIMER_MIN_X = 621;
@@ -32,7 +32,7 @@ constexpr unsigned char COLUMNS = 12;
 constexpr unsigned char ROWS = 12;
 
 //	Number of mines
-constexpr unsigned int MINES = 15;
+constexpr unsigned char MINES = 15;
 
 //	Texture coordinates
 constexpr unsigned char VIEW_CLOSE = 9;

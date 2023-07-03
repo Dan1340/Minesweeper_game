@@ -5,10 +5,11 @@ class Cell
 	bool is_mine;
 	bool is_flag;
 	bool is_open;
-	int mines_around;
+	char mines_around;
 
 public:
 	Cell();
+	void restart();
 	void set_is_mine();
 	void set_is_flag();
 	void set_is_open();
@@ -16,6 +17,5 @@ public:
 	bool get_is_mine();
 	bool get_is_flag();
 	bool get_is_open();
-	int get_mines_around();
-	void restart();
+	char get_mines_around();
 };

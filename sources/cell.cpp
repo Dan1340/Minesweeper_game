@@ -9,6 +9,15 @@ Cell::Cell()
 	this->restart();
 }
 
+//	Initial state of the cell
+void Cell::restart()
+{
+	is_mine = false;
+	is_flag = false;
+	is_open = false;
+	mines_around = 0;
+}
+
 void Cell::set_is_mine()
 {
 	is_mine = true;
@@ -44,16 +53,7 @@ bool Cell::get_is_open()
 	return is_open;
 }
 
-int Cell::get_mines_around()
+char Cell::get_mines_around()
 {
 	return mines_around;
-}
-
-//	Initial state of the cell
-void Cell::restart()
-{
-	is_mine = false;
-	is_flag = false;
-	is_open = false;
-	mines_around = 0;
 }

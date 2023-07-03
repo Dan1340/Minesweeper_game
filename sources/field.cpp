@@ -95,12 +95,16 @@ void Field::open_cell(int i_x, int i_y)
 }
 
 //	Look at that subtle off-white coloring...
-int Field::get_view(int i_x, int i_y)
+char Field::get_view(int i_x, int i_y)
 {
-	if (cells.at(i_x * COLUMNS + i_y).get_is_flag())
-		return VIEW_FLAG - (!cells.at(i_x * COLUMNS + i_y).get_is_mine() & game_over);
+	if (game_over && cells.at(i_x * COLUMNS + i_y).get_is_flag() && !cells.at(i_x * COLUMNS + i_y).get_is_mine())
+		return VIEW_FLAG_LOSE;										//	Mine is not here
+	else if (cells.at(i_x * COLUMNS + i_y).get_is_flag())
+		return VIEW_FLAG;
+	else if (game_over && !cells.at(i_x * COLUMNS + i_y).get_is_open() && cells.at(i_x * COLUMNS + i_y).get_is_mine())
+		return VIEW_CLOSE_LOSE;										//	Mine is here
 	else if (!cells.at(i_x * COLUMNS + i_y).get_is_open())
-		return VIEW_CLOSE + (cells.at(i_x * COLUMNS + i_y).get_is_mine() & game_over);
+		return VIEW_CLOSE;
 	else if (cells.at(i_x * COLUMNS + i_y).get_is_mine())
 		return VIEW_MINE_LOSE;
 	else
@@ -126,12 +130,12 @@ bool Field::get_game_over()
 	return game_over;
 }
 
-int Field::get_flags()
-{
-	return flags;
-}
-
 bool Field::get_victory()
 {
 	return victory;
+}
+
+char Field::get_flags()
+{
+	return flags;
 }
