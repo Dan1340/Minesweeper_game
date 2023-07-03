@@ -10,16 +10,16 @@ int main()
     sf::RenderWindow window(sf::VideoMode(CELL_SIZE * COLUMNS + FRAME_THICK * 2, CELL_SIZE * ROWS + FRAME_THICK * 2 + FRAME_HEAD), "Minesweeper", sf::Style::Default);
     window.setVerticalSyncEnabled(true);
     sf::Texture t_frame;                                                    //  Frame
-    t_frame.loadFromFile("sources/textures/Frame_v2.1264.png");
+    t_frame.loadFromFile("sources/textures/Frame_v3.1264.png");
     sf::Sprite s_frame(t_frame);
     sf::Texture t_cell;                                                     //  Cells
-    t_cell.loadFromFile("sources/textures/MinesweeperSprite_v1.64.png");
+    t_cell.loadFromFile("sources/textures/Cells_v2.64.png");
     sf::Sprite s_cell(t_cell);
     sf::Texture t_guy;                                                      //  Button
-    t_guy.loadFromFile("sources/textures/Guy_v1.64.png");
+    t_guy.loadFromFile("sources/textures/Guy_v2.64.png");
     sf::Sprite s_guy(t_guy);
     sf::Texture t_digits;                                                   //  Digits
-    t_digits.loadFromFile("sources/textures/Sevensegment_v1.32.png");
+    t_digits.loadFromFile("sources/textures/Digits_v2.64.png");
     sf::Sprite s_digits(t_digits);
 
     Field field;        //  It's field
@@ -44,15 +44,20 @@ int main()
         s_guy.setPosition(GUY_X, GUY_Y);
         window.draw(s_guy);
         //  Timer
-        for (int i = 0; i < 4; i++) {
-            s_digits.setTextureRect(sf::IntRect(menu.get_timer(i) * (CELL_SIZE/2), 0, CELL_SIZE/2, CELL_SIZE));
-            s_digits.setPosition(TIMER_X + (3 - i) * (CELL_SIZE/2), TIMER_Y);
+        for (int i = 0; i < 2; i++) {
+            s_digits.setTextureRect(sf::IntRect(menu.get_timer(i) * DIGIT_WIDTH, 0, DIGIT_WIDTH, DIGIT_HEIGHT));
+            s_digits.setPosition(TIMER_SEC_X + (1 - i) * DIGIT_WIDTH, TIMER_Y);
+            window.draw(s_digits);
+        }
+        for (int i = 2; i < 4; i++) {
+            s_digits.setTextureRect(sf::IntRect(menu.get_timer(i) * DIGIT_WIDTH, 0, DIGIT_WIDTH, DIGIT_HEIGHT));
+            s_digits.setPosition(TIMER_MIN_X + (3 - i) * DIGIT_WIDTH, TIMER_Y);
             window.draw(s_digits);
         }
         //  Counter
-        for (int i = 0; i < 4; i++) {
-            s_digits.setTextureRect(sf::IntRect(menu.get_counter(i) * (CELL_SIZE / 2), 0, CELL_SIZE / 2, CELL_SIZE));
-            s_digits.setPosition(COUNTER_X + (3 - i) * (CELL_SIZE / 2), COUNTER_Y);
+        for (int i = 0; i < 2; i++) {
+            s_digits.setTextureRect(sf::IntRect(menu.get_counter(i) * DIGIT_WIDTH, 0, DIGIT_WIDTH, DIGIT_HEIGHT));
+            s_digits.setPosition(COUNTER_X + (1 - i) * (CELL_SIZE / 2), COUNTER_Y);
             window.draw(s_digits);
         }
 

@@ -50,8 +50,12 @@ int Menu::get_guy_state()
 int Menu::get_timer(int index)
 {
 	int timer = finish_time - start_time;
-	int mod = pow(10, index+1);
-	int div = pow(10, index);
+	if (index < 2)
+		timer %= 60;		//	seconds
+	else
+		timer /= 60;		//	minutes
+	int mod = pow(10, (index % 2) + 1);
+	int div = pow(10, (index % 2));
 	return (timer % mod) / div;
 }
 

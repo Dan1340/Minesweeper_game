@@ -13,8 +13,13 @@ constexpr unsigned int QUIZZICAL_GUY = 2;
 constexpr unsigned int LOSER_GUY = 4;
 constexpr unsigned int WINNER_GUY = 6;
 
+//	The size of digits
+constexpr unsigned int DIGIT_HEIGHT = 64;
+constexpr unsigned int DIGIT_WIDTH = 32;
+
 //	Timer coordinates
-constexpr unsigned int TIMER_X = 639;
+constexpr unsigned int TIMER_MIN_X = 621;
+constexpr unsigned int TIMER_SEC_X = 703;
 constexpr unsigned int TIMER_Y = 48;
 
 //	Counter coordinates
@@ -32,3 +37,6 @@ constexpr unsigned int MINES = 15;
 constexpr unsigned char VIEW_MINE = 9;
 constexpr unsigned char VIEW_CLOSE = 10;
 constexpr unsigned char VIEW_FLAG = 11;
+constexpr unsigned char VIEW_MINE_LOSE = 12;
+constexpr unsigned char VIEW_CLOSE_LOSE = 13;
+constexpr unsigned char VIEW_FLAG_LOSE = 14;

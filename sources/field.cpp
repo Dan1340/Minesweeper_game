@@ -61,6 +61,9 @@ void Field::flag_cell(int i_x, int i_y)
 		flags++;
 	else
 		flags--;
+
+
+	this->check_victory();
 }
 
 //	Let's see Paul Allen's cell...
