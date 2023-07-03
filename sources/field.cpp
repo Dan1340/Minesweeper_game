@@ -78,10 +78,9 @@ void Field::open_cell(int i_x, int i_y)
 
 	cells.at(i_x * COLUMNS + i_y).set_is_open();		//	Sooooo...
 
-	if (cells.at(i_x * COLUMNS + i_y).get_is_mine()) {	//	Oops
-		game_over = true;
-		for (int i = 0; i < cells.size(); i++)
-				cells.at(i).set_is_open();				//	BOOM! (comming soon)
+	if (cells.at(i_x * COLUMNS + i_y).get_is_mine()) {
+		game_over = true;								//	BOOM!
+		return;
 	}
 
 	else if (cells.at(i_x * COLUMNS + i_y).get_mines_around() == 0)		//	Success, let's clean the field
@@ -99,11 +98,11 @@ void Field::open_cell(int i_x, int i_y)
 int Field::get_view(int i_x, int i_y)
 {
 	if (cells.at(i_x * COLUMNS + i_y).get_is_flag())
-		return VIEW_FLAG;
+		return VIEW_FLAG - (!cells.at(i_x * COLUMNS + i_y).get_is_mine() & game_over);
 	else if (!cells.at(i_x * COLUMNS + i_y).get_is_open())
-		return VIEW_CLOSE;
+		return VIEW_CLOSE + (cells.at(i_x * COLUMNS + i_y).get_is_mine() & game_over);
 	else if (cells.at(i_x * COLUMNS + i_y).get_is_mine())
-		return VIEW_MINE;
+		return VIEW_MINE_LOSE;
 	else
 		return cells.at(i_x * COLUMNS + i_y).get_mines_around();	//	By number of neighbors
 }

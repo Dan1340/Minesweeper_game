@@ -5,6 +5,7 @@ class Menu
 	int guy_state;
 	int start_time;
 	int finish_time;
+	int blink_time;
 	int counter;
 	bool button_state;
 

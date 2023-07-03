@@ -39,6 +39,7 @@ void Menu::check_menu(bool game_over, int flags, bool victory)
 			guy_state = THINKING_GUY + button_state;
 		}
 	}
+	blink_time = time(0) - finish_time;
 }
 
 int Menu::get_guy_state()
@@ -49,11 +50,13 @@ int Menu::get_guy_state()
 //	Specifies a digit for the timer segment
 int Menu::get_timer(int index)
 {
+	if (blink_time % 2 == 1)
+		return EMPTY_SEGMENT;	//	Blinking
+
 	int timer = finish_time - start_time;
-	if (index < 2)
-		timer %= 60;		//	seconds
-	else
+	if (index >= 2)
 		timer /= 60;		//	minutes
+	timer %= 60;
 	int mod = pow(10, (index % 2) + 1);
 	int div = pow(10, (index % 2));
 	return (timer % mod) / div;
@@ -62,6 +65,9 @@ int Menu::get_timer(int index)
 //	Specifies a digit for the counter segment
 int Menu::get_counter(int index)
 {
+	if (blink_time % 2 == 1)
+		return EMPTY_SEGMENT;	//	Blinking
+
 	int mod = pow(10, index + 1);
 	int div = pow(10, index);
 	return (counter % mod) / div;
@@ -73,6 +79,7 @@ void Menu::restart()
 	guy_state = 0;
 	start_time = time(0);
 	finish_time = time(0);
+	blink_time = time(0);
 	counter = MINES;
 	button_state = false;
 }

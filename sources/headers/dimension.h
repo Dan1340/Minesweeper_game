@@ -16,6 +16,7 @@ constexpr unsigned int WINNER_GUY = 6;
 //	The size of digits
 constexpr unsigned int DIGIT_HEIGHT = 64;
 constexpr unsigned int DIGIT_WIDTH = 32;
+constexpr unsigned int EMPTY_SEGMENT = 10;
 
 //	Timer coordinates
 constexpr unsigned int TIMER_MIN_X = 621;
@@ -34,9 +35,9 @@ constexpr unsigned char ROWS = 12;
 constexpr unsigned int MINES = 15;
 
 //	Texture coordinates
-constexpr unsigned char VIEW_MINE = 9;
-constexpr unsigned char VIEW_CLOSE = 10;
-constexpr unsigned char VIEW_FLAG = 11;
-constexpr unsigned char VIEW_MINE_LOSE = 12;
-constexpr unsigned char VIEW_CLOSE_LOSE = 13;
-constexpr unsigned char VIEW_FLAG_LOSE = 14;
+constexpr unsigned char VIEW_CLOSE = 9;
+constexpr unsigned char VIEW_CLOSE_LOSE = 10;
+constexpr unsigned char VIEW_FLAG_LOSE = 11;
+constexpr unsigned char VIEW_FLAG = 12;
+constexpr unsigned char VIEW_MINE = 13;
+constexpr unsigned char VIEW_MINE_LOSE = 14;
